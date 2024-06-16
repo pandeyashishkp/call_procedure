@@ -10,7 +10,7 @@ client = bigquery.Client(project='ash11123')
 query = """
     CREATE OR REPLACE PROCEDURE tetramumbai.proc()
     BEGIN
-        select * from tetramumbai.summer;
+        select year from tetramumbai.summer;
     END;
 """
 job_config = bigquery.job.QueryJobConfig(use_query_cache=False)
