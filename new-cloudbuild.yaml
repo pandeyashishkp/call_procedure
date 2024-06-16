@@ -1,0 +1,6 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/ash11123/gcf-artifacts/call_procedure:prod', '.' ]
+  # This step tells Google Cloud Build to use docker to build the Dockerfile.  
+images:
+- 'us-central1-docker.pkg.dev/ash11123/gcf-artifacts/call_procedure:prod'

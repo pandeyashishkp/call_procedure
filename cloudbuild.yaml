@@ -1,0 +1,20 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'us-central1-docker.pkg.dev/ash11123/gcf-artifacts/call_procedure:prod', '.' ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'push', 'us-central1-docker.pkg.dev/ash11123/gcf-artifacts/call_procedure:prod' ]
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'test'  # Replace with your service name
+      - '--image'
+      - 'us-central1-docker.pkg.dev/ash11123/gcf-artifacts/call_procedure:prod'
+      - '--region'
+      - 'us-central1'  # You can change this if you want to deploy to a different region
+      - '--platform'
+      - 'managed'
+  # Optional: if you want to allow unauthenticated access
+      - '--allow-unauthenticated'
